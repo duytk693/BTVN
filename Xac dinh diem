@@ -1,0 +1,52 @@
+import math
+import turtle
+xD = float(input())
+yD = float(input())
+AD = math.sqrt(xD**2+(yD-2)**2)
+BD = math.sqrt(xD**2+(yD+2)**2)
+CD = math.sqrt((xD-6)**2+yD**2)
+OD = math.sqrt(xD**2+yD**2)
+AC = math.sqrt(40)
+BC = math.sqrt(40)
+AB = 4
+p_ABC = (AC+BC+AB)/2
+p_ADC = (AD+AC+CD)/2
+print(p_ADC)
+p_BDC = (BD+BC+CD)/2
+S_ABC = math.sqrt(p_ABC*(p_ABC-AC)*(p_ABC-BC)*(p_ABC-AB))
+S_ADC = math.sqrt(p_ADC*(p_ADC-AD)*(p_ADC-AC)*(p_ADC-CD))
+S_BDC = math.sqrt(p_BDC*(p_BDC-BD)*(p_BDC-BC)*(p_BDC-CD))
+print('Dien tich tam giac ABC la: ',S_ABC)
+print('Ban kinh OA nua duong tron tam O: ', 2)
+if xD >0:
+    print('Dien tich tam giac ADC la: ',S_ADC)
+    print('Dien tich tam giac BDC la: ',S_BDC)
+    if (S_ABC - (S_ADC+S_BDC) > 0):
+        print('Diem D thuoc hinh P')
+elif xD <= 0 and OD <=2:
+    print('Diem D thuoc hinh P')
+n = turtle.Turtle()
+n.hideturtle()
+n.penup()
+n.goto(0, 0)
+n.write('O', align='right')
+n.pendown()
+n.goto(0, 100)
+n.write('A')
+n.goto(0, -100)
+n.write('B')
+n.goto(300, 0)
+n.write('C')
+n.goto(0, 100)
+n.penup()
+n.goto(0,-100)
+n.pendown()
+n.circle(100,-180)
+n.penup()
+n.goto(xD*50,yD*50)
+n.write('D',align = "left")
+n.pensize()
+n.pensize(10)
+n.pendown()
+n.write('.', align = "right")
+turtle.done()
