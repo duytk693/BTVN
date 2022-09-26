@@ -1,0 +1,12 @@
+import random
+khoi_tao = float(input())
+n = 1
+day_so = []
+while (khoi_tao >= n):
+    day_so.append(random.randint(1, 10))
+    n = n + 1    
+sort = [] 
+while (len(day_so)>0):
+    sort.append(min(day_so))
+    day_so.remove(min(day_so))
+print(sort)
