@@ -1,0 +1,54 @@
+import random
+nguyen_to = [2,3,5]
+number = 7
+while (number <=1000):
+    for number1 in nguyen_to:
+        if (number % number1 == 0):
+            break
+        elif ((number % number1 != 0) and (number1 == max(nguyen_to))):
+            nguyen_to.append(number)
+    if ((number + 2) % 5 == 0):
+        number = number + 4
+    else:
+        number = number + 2
+print("Day so nguyen to:",nguyen_to)
+khoi_tao = float(input())
+n = 1
+day_so = []
+while (khoi_tao >= n):
+    day_so.append(random.randint(1, 100))
+    n = n + 1
+print("Day so ngau nhien: ",day_so)
+min_day_so = min(day_so)
+tap_uoc = [1]
+for nguyen_to_1 in nguyen_to:
+    if nguyen_to_1 > (min(day_so) // 2):
+        break
+    n = 1
+    while min_day_so % nguyen_to_1 == 0:
+        tap_uoc.append(nguyen_to_1 ** n)
+        min_day_so = min_day_so / nguyen_to_1
+        n = n + 1
+n = 1
+m = 2
+while (n <= (len(tap_uoc)-2)):
+    while (m <=(len(tap_uoc)-1)):
+        if ((tap_uoc[n]*tap_uoc[m] <= min(day_so)/2) and ((tap_uoc[m] % tap_uoc[n]) != 0) and (min(day_so) % (tap_uoc[n]*tap_uoc[m]) == 0)):
+            tap_uoc.append(tap_uoc[n]*tap_uoc[m])
+        m = m + 1
+    n = n + 1
+    m = n + 1  
+tap_uoc.append(min(day_so))
+tap_uoc = list(set(tap_uoc))
+tap_uoc.sort()
+print("Uoc cua so nho nhat: ",tap_uoc)
+day_so.remove(min(day_so))
+uoc_chung = []
+for m in range(len(tap_uoc)):
+    n = 0
+    while (((len(day_so) -1) >= n) and (day_so[n] % tap_uoc[m] == 0)):
+        n = n + 1
+    if (n == len(day_so)):
+        uoc_chung.append(tap_uoc[m])
+print('Tap uoc chung: ',uoc_chung)
+print('UCLN: ', max(uoc_chung))  
