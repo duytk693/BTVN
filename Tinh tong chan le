@@ -1,0 +1,5 @@
+k = str(input('Nhap chuoi: '))
+le = k.count('1')*1 + k.count('3')*3 + k.count('5')*5 + k.count('7')*7 + k.count('9')*9
+chan = k.count('2')*2 + k.count('4')*4 + k.count('6')*6 + k.count('8')*8
+print('Tong so chan la: ',chan)
+print('Tong so le la: ',le)
