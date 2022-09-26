@@ -1,0 +1,16 @@
+import calendar
+month = calendar.monthcalendar(2022,6)
+print(month)
+x=0
+y=0
+for i in month:
+    a=0
+    for j in i:
+        if j == 0:
+            a+=1
+    if a>0:
+        x+=1
+    else:
+        y+=1
+print(f"Có {x} tuần lẻ")
+print(f"Có {y} tuần chẵn")
