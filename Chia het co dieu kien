@@ -1,0 +1,9 @@
+n = int(input('Nhập n '))
+j = 1 
+#số chia hết cho 6 là số chia hết cho 3 và 2
+#số chia hết cho 3 mà không chia hết cho 6 là số chia hết cho 3 mà không chia hết cho 2
+print(f'Các ước của {n} chia hết cho 3 nhưng không chia hết cho 6 là : ')
+while j < n :
+    if j % 3 == 0 and j % 2 != 0 :
+        print(j , end = ' ')
+    j = j + 1
