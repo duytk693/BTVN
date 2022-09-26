@@ -1,0 +1,29 @@
+import math
+a = float(input())
+b = float(input())
+c = float(input())
+delta = 3.14159
+x1 = 3.14159
+x2 = 3.14159 
+if (a == 0) and (b == 0):
+    print("Phuong trinh vo nghiem")
+elif (a == 0) and (b != 0):
+    x1 = x2 = -c/b
+    print(x1)
+    print(x2)
+elif (a != 0) and (b != 0):
+    delta = b*b-4*a*c
+    if delta < 0:
+        x1 = x2 = 0
+        print(x1)
+        print(x2)
+    elif delta == 0:
+        x1 = x2 = -b/(2*a)
+        print(x1)
+        print(x2)
+    else:
+        delta  = math.sqrt(delta)
+        x1 = (-b+delta)/(2*a)
+        x2 = (-b-delta)/(2*a)
+        print(x1)
+        print(x2)
