@@ -1,0 +1,60 @@
+a = int(input("nhập hệ số bậc 2: "))
+b = int(input("nhập hệ số bậc 1: "))
+c = int(input("nhập tham số: "))
+x = 1
+y = 1
+t = 1
+
+if a==0 or b==0: 
+    if a==0 and b==0 and c==0: 
+        print("\nKhông có phương trình")
+    if a==0 and b==0 and c!=0: 
+        print("\nTa có phương trình {} = 0".format(c))
+        
+if a==0 and b!=0:
+    if b>0: 
+        y = " + "
+    if b<0:
+        y = " - "
+    if b == 1: 
+        b=""
+    if c>0: 
+        t = " + "
+    if c<0:
+        t = " - "  
+    if c==0: 
+        c = ""
+        t = ""   
+    print("\nTa có phương trình {}x{}{} = 0".format(b, t, c))
+    
+if a!=0 and b==0 :
+    if a == 1: 
+        a=""
+    if c>0: 
+        t = " + "
+    if c<0:
+        t = " - " 
+    if c==0: 
+        t = ""
+        c = ""
+    print("\nTa có phương trình {}x^2{}{} = 0".format(a, t, c))
+    
+if a!=0 and b!=0: 
+    if b>0 and b!=1:
+        y = " + "
+    if b<0: 
+        y = " - "
+    if c>0:
+        t = " + "
+    if c<0: 
+        t = " - "     
+    if c==0: 
+        c = ""
+        t = ""
+    if a == 1 or b == 1: 
+        if a == 1: 
+            a = ""
+        if b == 1: 
+            b = ""
+            y = " + "
+    print("\nTa có phương trình: {}x^2{}{}x{}{} = 0".format(a, y, b, t, c))
