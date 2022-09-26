@@ -1,0 +1,10 @@
+n = float(input())
+ket_qua = n
+if (n == 0):
+    ket_qua = 1
+    print(ket_qua)
+else:
+    while (n >= 2):
+        ket_qua = ket_qua*(n-1)
+        n = n-1
+print(ket_qua)
