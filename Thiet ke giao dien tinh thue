@@ -1,0 +1,76 @@
+from tkinter import *
+from tkinter import ttk
+num = Tk()
+num.title('Tính thuế thu nhập')
+num.geometry('500x220')
+myfont=('Helvetica','14')
+cbbfont=('Helvetica','14')
+
+def tienthue(event):
+    a=int(entry1.get())
+    b=int(entry2.get())
+    t = a - 11000000 - b*4400000
+    if t<=5000000:
+        lbtienthue['text'] = f'Thuế phải đóng {a*(5/100)} VNĐ'
+    elif 5000000<t<=10000000:
+        lbtienthue['text'] = f'Thuế phải đóng {a*(10/100)} VNĐ'
+    elif 10000000<t<=18000000:
+        lbtienthue['text'] = f'Thuế phải đóng {a*(15/100)} VNĐ'
+    elif 18000000<t<=32000000:
+        lbtienthue['text'] = f'Thuế phải đóng {a*(20/100)} VNĐ'
+    elif 32000000<t<=52000000:
+        lbtienthue['text'] = f'Thuế phải đóng {a*(25/100)} VNĐ'
+    elif 52000000<t<=80000000:
+        lbtienthue['text'] = f'Thuế phải đóng {a*(30/100)} VNĐ'
+    elif 80000000<t:
+        lbtienthue['text'] = f'Thuế phải đóng {a*(35/100)} VNĐ'
+    
+def show(event):
+    a=int(entry1.get())
+    b=int(entry2.get())
+    t = a - 11000000 - b*4400000
+    if t<=5000000:
+        lbthuesuat.set(values[0])
+    elif 5000000<t<=10000000:
+        lbthuesuat.set(values[1])
+    elif 10000000<t<=18000000:
+        lbthuesuat.set(values[2])
+    elif 18000000<t<=32000000:
+        lbthuesuat.set(values[3])
+    elif 32000000<t<=52000000:
+        lbthuesuat.set(values[4])
+    elif 52000000<t<=80000000:
+        lbthuesuat.set(values[5])
+    elif 80000000<t:
+        lbthuesuat.set(values[6])
+    
+
+    
+lb1 = Label(num, text='Nhập thu nhập:', font=myfont)
+lb1.place(x=5, y=5)
+entry1 = Entry(num, font=myfont, justify=RIGHT)
+entry1.place(x=250,y=5)
+
+lb2 = Label(num, text='Nhập số người phụ thuộc:', font=myfont)
+lb2.place(x=5, y=35)
+entry2 = Entry(num, font=myfont, justify=RIGHT)
+entry2.place(x=250,y=35)
+
+button1 = Button(num,padx=12,pady=2, text='Thuế suất:', font=myfont, fg='red')
+button1.place(x=10, y=90)
+button1.bind('<Button>',show)
+
+values=['5%','10%','15%','20%','25%','30%','35%']
+
+lbthuesuat = ttk.Combobox(num, value = values, font=cbbfont, justify=RIGHT)
+lbthuesuat.place(x=250,y=90)
+
+tinhthue = Button(num, padx=12,pady=2, text='Tính thuế: ', font=myfont, fg='red')
+tinhthue.place(x=10,y=150)
+tinhthue.bind('<ButtonPress>',tienthue)
+
+lbtienthue = Label(num, text='', font=myfont, fg='red', bg='aqua')
+lbtienthue.place(x=210, y=150)
+
+
+num.mainloop()
