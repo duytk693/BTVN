@@ -1,0 +1,33 @@
+text = '095431334247431035'
+# text = '0123456789'
+def tim_so(txt):
+    '''
+    Hàm tìm chuỗi số giảm dần dài nhất
+    Parameter: 
+        txt(string): Chuỗi số cần tìm
+    Return: 
+        result(list): Các chuỗi số giảm dần tìm được dài nhất
+        None: Không tìm thấy chuỗi số giảm dần
+    '''
+    result_string = ''
+    i = 0
+    while i < len(txt):
+        result_string += txt[i]
+        if i < len(txt)-1:
+            if int(txt[i+1]) >= int(txt[i]): result_string += ' '
+        i+=1
+    all_result = result_string.split()
+    sorted_result = sorted(all_result, key=len, reverse=True)
+    result_list = []
+    max_length = len(sorted_result[0])
+    if max_length == 1:
+        return None
+    else:
+        for sorted_item in sorted_result:
+            if len(sorted_item) == max_length: result_list.append(sorted_item)
+        return result_list
+
+
+ketqua = tim_so(text)
+if ketqua == None: print('Không tìm thấy chuỗi giảm dần')
+else: print(f'Có {len(ketqua)} chuỗi giảm dần dài nhất là:', ketqua)
