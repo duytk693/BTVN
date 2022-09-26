@@ -1,0 +1,20 @@
+def max_min_in_text(_string):
+    """
+    Hàm tìm số chẵn lớn nhất và số lẻ bé nhất
+    
+    Parameters:
+    _string(str) : Chuỗi cần tìm kiếm
+    
+    Returns:
+    int: Số chẵn lớn nhất và số lẻ bé
+    """
+    even_number = None
+    odd_number = None
+    numbers = _string.split()
+    for number in numbers:
+       if number.isnumeric():
+            if int(number)%2==0:
+                even_number = int(number) if even_number == None else even_number if even_number > int(number) else int(number)
+            else:
+                odd_number = int(number) if odd_number == None else odd_number if odd_number < int(number) else int(number)
+    return even_number,odd_number
