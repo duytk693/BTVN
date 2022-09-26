@@ -1,0 +1,104 @@
+from tkinter import *
+from tkinter import ttk
+menu = Tk()
+menu.title("Menu")
+menu.geometry("500x380")
+def currency(a):
+    a1=a//1000000000
+    a2=(a-a1*1000000000)//1000000
+    a3=(a-a1*1000000000-a2*1000000)//1000
+    a4=a-a1*1000000000-a2*1000000-a3*1000
+    if a1!=0:
+        text =(f'{a1},{a2},{a3},{a4}')
+    elif a2!=0:
+        text =(f'{a2},{a3},{a4}')
+    elif a3!=0:
+        text =(f'{a3},{a4}')
+    elif a4!=0:
+        text =(f'{a4}')
+    return text+'  VND'
+    
+def tinhtien(event):
+    Tienphobo = int(phobovariable.get())*int(phobocombo.get())
+    Tienbunbo = int(bunbovariable.get())*int(bunbocombo.get())
+    Tienbunngan = int(bunnganvariable.get())*int(bunngancombo.get())
+    Tienmyga = int(mygavariable.get())*int(mygacombo.get())
+    Tongtien = Tienphobo + Tienbunbo  +  Tienbunngan + Tienmyga
+    Chietkhau = int(vartien.get())/100
+    Thanhtoan = Tongtien*(1-Chietkhau)
+    labelsotien['text'] = currency(int(Thanhtoan))
+    
+def changecolor():
+    a = vartien.get()
+    if a == 0:
+        radiobutton1['fg'] = 'red'
+        radiobutton2['fg'] = 'black'
+    else:
+        radiobutton1['fg'] = 'black'
+        radiobutton2['fg'] = 'red'
+
+fontBold = ("Timenewroman","12","bold","underline")
+fontNormal = ("Timenewroman","10")
+fontItalic = ("Timenewroman","10","italic")
+
+phobovariable = IntVar()
+bunbovariable = IntVar()
+bunnganvariable = IntVar()
+mygavariable = IntVar()
+
+label1 = Label(menu, text='Danh sách món', font = fontBold, fg='gray')
+label1.place(x=50, y=1)
+phobocheck = Checkbutton(menu, text ='  Phở bò (40k)', onvalue = 40000, offvalue = 0, variable=phobovariable, font=fontNormal)
+phobocheck.place(x=20, y = 30)
+bunbocheck = Checkbutton(menu, text ='  Bún bò (30k)', onvalue = 30000, offvalue = 0, variable=bunbovariable, font=fontNormal)
+bunbocheck.place(x=20, y = 60)
+bunngancheck = Checkbutton(menu, text ='  Bún ngan (50k)', onvalue = 50000, offvalue = 0, variable=bunnganvariable, font=fontNormal)
+bunngancheck.place(x=20, y = 90)
+mygacheck = Checkbutton(menu, text ='  Mỳ gà (35k)', onvalue = 35000, offvalue = 0, variable=mygavariable, font=fontNormal)
+mygacheck.place(x=20, y = 120)
+
+values = [i for i in range(0,10,1)]
+
+label2 = Label(menu, text='Số lượng', font = fontBold, fg='gray')
+label2.place(x=350, y=1)
+
+phobocombo = ttk.Combobox(menu, values = values, state ="readonly", font=fontNormal, width = 5)
+phobocombo.place(x=360, y = 30)
+phobocombo.set(values[0])
+bunbocombo = ttk.Combobox(menu, values = values, state ="readonly", font=fontNormal, width = 5)
+bunbocombo.place(x=360, y = 60)
+bunbocombo.set(values[0])
+bunngancombo = ttk.Combobox(menu, values = values, state ="readonly", font=fontNormal, width = 5)
+bunngancombo.place(x=360, y = 90)
+bunngancombo.set(values[0])
+mygacombo = ttk.Combobox(menu, values = values, state ="readonly", font=fontNormal, width = 5)
+mygacombo.place(x=360, y = 120)
+mygacombo.set(values[0])
+
+# Create a canvas widget
+canvas=Canvas(menu, width=500)
+canvas.place(x=1, y=170)
+# Add a line in canvas widget
+canvas.create_line(30,5,470,5, fill="gray", width=2)
+
+label3 = Label(menu, text='Hình thức thanh toán:', font = fontBold, fg='gray')
+label3.place(x=50, y=190)
+
+vartien=IntVar()
+vartien.set(0)
+
+radiobutton1 = Radiobutton(menu, text='Tiền mặt',value = 0, variable = vartien, font=fontNormal,fg='red', command = changecolor)
+radiobutton1.place(x=50, y= 220)
+radiobutton2 = Radiobutton(menu, text='Chuyển khoản (-5%)',value = 5, variable = vartien, font=fontNormal,fg= 'black', command = changecolor)
+radiobutton2.place(x=150, y= 220)
+
+button = Button(menu, text='Thanh toán', font = fontNormal, fg='red')
+button.place(x=50, y = 280)
+button.bind("<Button>", tinhtien)
+
+label3 = Label(menu, text='Tổng số tiền cần thanh toán là:', font=fontItalic, fg='red')
+label3.place(x=50, y=320)
+labelsotien = Label(menu, text='', fg='red', font = fontBold)
+labelsotien.place(x=300, y=320)
+
+menu.mainloop()
