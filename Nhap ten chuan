@@ -1,24 +1,5 @@
-import string
-
-# Lấy dữ liệu và xử lý
-name = input("Họ và tên: ")
-name = name.strip().lower().title().split()
-list = len(name)
-
-# Output các trường hợp khác nhau
-if list == 6:
-    print(name[0], name[1], name[2], name[3], name[4], name[5], sep=" ")
-elif list == 5:
-    print(name[0], name[1], name[2], name[3], name[4], sep=" ")
-elif list == 4:
-    print(name[0], name[1], name[2], name[3], sep=" ")
-elif list == 3:
-    print(name[0], name[1], name[2], sep=" ")
-elif list == 2:
-    print(name[0], name[1], sep=" ")
-elif list == 1:
-    print(name[0])
-elif list == 0
-    print("Quên nhập tên rồi kìa .-.")
-else:
-    print("Tên dài thế ._.")
+name = '   le Duc DUY '
+name = name.lower()
+name = name.strip()
+a = name.title()
+print(a)
