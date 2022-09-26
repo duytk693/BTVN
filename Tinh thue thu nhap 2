@@ -1,0 +1,24 @@
+TTT = int(input('Tổng thu nhập:'))
+NPT = int(input('Số người phụ thuộc:'))
+if TTT <0 or NPT < 0:
+    print('Dữ liệu không hợp lệ')
+else:
+    TNTT = TTT - 11 - NPT*4.4
+    if TNTT <0:
+        print('Không phải nộp thuế')
+    else:
+        if TNTT<=5:
+            TPN = TNTT*5     
+        elif TNTT<=10:
+            TPN = 5*5 + (TNTT-5)*10
+        elif TNTT<=18:
+            TPN = 5*5 + 5*10 + (TNTT-10)*15
+        elif TNTT<=32:
+            TPN = 5*5 + 5*10 + 8*15 + (TNTT-18)*20
+        elif TNTT<=52:
+            TPN = 5*5 + 5*10 + 8*15 + 14*20 + (TNTT-32)*25
+        elif TNTT<=80:
+            TPN = 5*5 + 5*10 + 8*15 + 14*20 + 20*25 + (TNTT-52)*30
+        elif TNTT>80:
+            TPN = 5*5 + 5*10 + 8*15 + 14*20 + 20*25 + 28*30 + (TNTT-80)*35
+        print(f"Thuế phải nộp: {TPN/100} tr")
