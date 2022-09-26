@@ -1,0 +1,98 @@
+
+import turtle
+
+
+# Hàm di chuyển turtle không để lại đường đi
+def Goto(x, y):
+    t.setheading(0)
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+
+# align == 0: center
+# align == 1: left
+# align == 2: right   
+def Draw_position(x,y,_witdh,align):
+    if (align == 0 or align ==1):
+        Goto(x+_witdh/20, y+_witdh/20)
+        t.left(90)
+        t.forward(_witdh/10)
+        t.backward(_witdh/10)
+        t.right(90)
+        t.forward(_witdh/10)
+        
+        Goto(x+_witdh/20, y-_witdh/20)
+        t.right(90)
+        t.forward(_witdh/10)
+        t.backward(_witdh/10)
+        t.left(90)
+        t.forward(_witdh/10)
+        
+    if (align == 0 or align ==2):
+        Goto(x-_witdh/20, y+_witdh/20)
+        t.left(90)
+        t.forward(_witdh/10)
+        t.backward(_witdh/10)
+        t.left(90)
+        t.forward(_witdh/10)
+        
+        Goto(x-_witdh/20, y-_witdh/20)
+        t.right(90)
+        t.forward(_witdh/10)
+        t.backward(_witdh/10)
+        t.right(90)
+        t.forward(_witdh/10)
+        
+_witdh = int(input("Nhập kích thước ô trong bàn cờ : "))
+
+t=turtle.Turtle()
+t.speed(10)
+
+for i in range(-5,5,1):
+    Goto(-4*_witdh, (i+0.5)*_witdh)
+    t.forward(8*_witdh)
+    
+for i in range(-4,5,1):
+    Goto(i*_witdh, (-4.5)*_witdh)
+    t.left(90)
+    if i == -4 or i == 4:
+        t.forward(9*_witdh)
+        t.right(90)
+    else:
+        t.forward(4*_witdh)
+        t.penup()
+        t.forward(_witdh)
+        t.pendown()
+        t.forward(4*_witdh)
+        t.right(90)
+        
+Goto(-1*_witdh, (-4.5)*_witdh)
+t.goto(_witdh,(-2.5)*_witdh)
+t.backward(2*_witdh)
+t.goto(_witdh, (-4.5)*_witdh)
+
+Goto(-1*_witdh, (4.5)*_witdh)
+t.goto(_witdh,(2.5)*_witdh)
+t.backward(2*_witdh)
+t.goto(_witdh, (4.5)*_witdh)
+
+
+Draw_position(-3*_witdh,-2.5*_witdh,_witdh,0)
+Draw_position(3*_witdh,-2.5*_witdh,_witdh,0)
+Draw_position(-3*_witdh,2.5*_witdh,_witdh,0)
+Draw_position(3*_witdh,2.5*_witdh,_witdh,0)
+
+for i in range(-4,5,2):
+    if (i ==-4):
+        Draw_position(i*_witdh,-1.5*_witdh,_witdh,1)
+        Draw_position(i*_witdh,1.5*_witdh,_witdh,1)
+    elif (i == 4):
+        Draw_position(i*_witdh,-1.5*_witdh,_witdh,2)
+        Draw_position(i*_witdh,1.5*_witdh,_witdh,2)
+    else:
+        Draw_position(i*_witdh,-1.5*_witdh,_witdh,0)
+        Draw_position(i*_witdh,1.5*_witdh,_witdh,0)
+    
+    
+t.hideturtle()
+turtle.done()
