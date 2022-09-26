@@ -1,0 +1,31 @@
+import math
+
+a1 = float(input('nhập giá trị ngưỡng min: '))
+a2 = float(input('nhập giá trị ngưỡng max: '))
+d = float(input('nhập giá trị sai số: '))
+
+def f(a):  
+    fa = ((math.e)**a) + math.sin(a)
+    return fa
+
+def nlap(a1, a2, d): 
+    n = round(((math.log((a2-a1)/d))/(math.log(2))),0)
+    return n
+
+def timx(a1, a2, n):
+    c = (a1 + a2)/2
+    i = 0    
+    while i <= n: 
+        i +=1 
+        if f(a1)*f(c)<0: 
+            a2 = c
+            c = (a1 + a2)/2
+        if f(a2)*f(c)<0:
+            a1 = c
+            c = (a1+a2)/2      
+    return c
+
+n = int(nlap(a1, a2, d))
+c = timx(a1, a2, n)
+print ('\nSố lần lặp chia đôi: ', n)
+print ('Kết quả: ',c )
