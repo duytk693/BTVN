@@ -1,0 +1,73 @@
+import turtle
+import calendar
+import datetime
+
+t=turtle.Turtle()
+t.hideturtle()
+
+mm = int(input("Nhập tháng cần xem:"))
+yy = int(input("Nhập năm cần xem:"))
+
+def go_to(x,y):
+    """
+    Hàm di chuyển con trỏ không để lại nét vẽ
+    
+    Parameters:
+    x(float) : Hoành độ của điểm đến
+    y(float) : Tung độ của điểm đến
+    """
+    t.penup()
+    t.goto(x,y)
+    t.pendown()
+
+def write_text(x,y,style,text):
+    """
+    Hàm ghi chữ tại 1 điểm
+    
+    Parameters:
+    x(float) : Hoành độ của điểm đến
+    y(float) : Tung độ của điểm đến
+    style: Style của text muốn viết
+    text(str) : Nội dung text muốn ghi
+    """
+    go_to(x,y)
+    t.write(text,move = False, font = style,align = 'left')
+
+calendar.setfirstweekday(calendar.SUNDAY)
+allWeekOfMonth = calendar.monthcalendar(yy,mm)
+
+spaceX = 50
+space = 35
+x=0
+y=0
+chars = "SMTWTFS"
+style = ('Arial', 20)
+for i in range(7):
+    t.pencolor("red") if i == 0 else t.pencolor("black")
+    write_text(x,y,style,chars[i])
+    x += spaceX
+
+go_to(x,y)
+t.goto(0,0)
+
+x=0
+y -=space
+go_to(x,y)
+for week in allWeekOfMonth:
+    for dayOfMonth in week:
+        if dayOfMonth !=0:
+            t.pencolor("red") if datetime.datetime(yy,mm,dayOfMonth).weekday() == 6 else t.pencolor("black")
+            write_text(x,y,style,str(dayOfMonth))
+        x+=spaceX
+    x=0
+    y-=space
+
+t.pencolor("red")
+go_to(spaceX*7,space)
+t.write(str(yy),move = False, font=('Arial', 50, 'italic'),align = 'right')
+
+t.pencolor("black")
+go_to(spaceX*7,space+70)
+t.write(datetime.datetime(yy,mm,1).strftime("%B"),move = False, font=('Arial', 50, 'bold'),align = 'right')
+
+turtle.done()    
