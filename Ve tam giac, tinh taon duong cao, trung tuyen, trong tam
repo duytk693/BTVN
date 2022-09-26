@@ -1,0 +1,119 @@
+import math
+import turtle
+#Nhap toa do 3 diem A B C
+
+xA = float(input())
+yA = float(input())
+xB = float(input())
+yB = float(input())
+xC = float(input())
+yC = float(input())
+
+#Kiem tra 3 diem A B C co phai la 3 dinh cua tam giac
+
+AB = math.sqrt((xB-xA)**2 + (yB-yA)**2)
+AC = math.sqrt((xC-xA)**2 + (yC-yA)**2)
+BC = math.sqrt((xC-xB)**2 + (yC-yB)**2)
+Tamgiac = AB + AC > BC and AB + BC > AC and AC + BC > AB
+print('A, B, C la 3 dinh cua tam giac: ', Tamgiac)
+
+#Tinh goc A B C
+cos_A = (AC**2 + BC**2 - AB**2)/(2*AC*BC)
+cos_B = (AB**2 + BC**2 - AC**2)/(2*AB*BC)
+cos_C = (AB**2 + AC**2 - BC**2)/(2*AB*AC)
+A_hat = math.degrees(math.acos(cos_A))
+B_hat = math.degrees(math.acos(cos_B))
+C_hat = math.degrees(math.acos(cos_C))
+
+#Duong cao tu cac dinh
+
+AH = math.sin(B_hat)*AB
+BJ = math.sin(C_hat)*BC
+CK = math.sin(A_hat)*AC
+
+print('Duong cao tu dinh A: ',round(AH,2))
+print('Duong cao tu dinh B: ',round(BJ,2))
+print('Duong cao tu dinh C: ',round(CK,2))
+
+#tim trung điem
+#AB
+xM = (xA + xB)/2
+yM = (yB + yB)/2 
+#AC
+xN = (xA + xC)/2
+yN = (yA + yC)/2
+#BC
+xP = (xB + xC)/2
+yP = (yB + yC)/2
+#do dai trung tuyen
+CM = math.sqrt((xM-xC)**2 + (yM-yC)**2)
+BN = math.sqrt((xN-xB)**2 + (yN-yB)**2)
+AP = math.sqrt((xP-xA)**2 + (yP-yA)**2)
+
+# Print độ dài trung tuyến
+print("Do dai trung tuyen tu dinh A: " ,round(AP,2))
+print("Do dai trung tuyen tu dinh B: " ,round(BN,2))
+print("Do dai trung tuyen tu dinh C: " ,round(CM,2))
+
+#Tinh toa do trong tam tam giac ABC
+xQ = (xA+xB+xC)/3
+yQ = (yA+yB+yC)/3
+print('Toa do trong tam M cua tam giac ABC la: ',(round(xQ,2),round(yQ,2)))
+
+#Tinh toa do truc tam tam giac ABC
+#vector AB, AC, BC
+xAB = xB-xA
+yAB = yB-yA
+xAC = xC-xA
+yAC = yC-yA
+xBC = xC-xB
+yBC = yC-yB
+
+D1 = xA*xBC + yBC*yA
+D2 = xAC*xB + yAC*yB
+yO = (D1*xAC-D2*xBC)/(yBC*xAC-yAC*xBC)
+xO = (D1-yBC*yO)/xBC
+print('Toa do truc tam tam giac ABC la: ',(round(xO,2), round(yO,2)))
+#Ve
+
+n = turtle.Turtle()
+n.hideturtle()
+n.penup()
+n.goto(xA, yA)
+n.write('A', align='right')
+n.pendown()
+n.goto(xB, yB)
+n.write('B')
+n.goto(xC, yC)
+n.write('C')
+n.goto(xA, yA)
+n.penup()
+n.pensize(3)
+n.goto(xQ, yQ)
+n.pendown()
+n.pencolor('red')
+n.goto(xQ, yQ)
+n.write('Q')
+n.penup()
+n.goto(xO, yO)
+n.pendown()
+n.pencolor('blue')
+n.goto(xO, yO)
+n.write('O')
+n.pencolor('black')
+n.penup()
+n.goto(xA,yA)
+n.pendown()
+n.goto(xP,yP)
+n.write('P')
+n.penup()
+n.goto(xB,yB)
+n.pendown()
+n.goto(xN,yN)
+n.write('N')
+n.penup()
+n.goto(xC,yC)
+n.pendown()
+n.goto(xM,yM)
+n.write('M')
+turtle.done()
