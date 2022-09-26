@@ -1,0 +1,28 @@
+chuoi = '-2 -6 9 -7 8 10 56 -72 -8 -1 6 90 45 21 -5'
+number_list = chuoi.split()
+tong = max_am = min_duong = 0
+so_am = []
+so_duong = []
+for i in number_list:
+    tong += int(i)
+    if int(i) < 0:
+        so_am.append(i)
+    elif int(i) > 0:
+        so_duong.append(i)
+max_am = so_am[0]
+min_duong = so_duong[0]
+for sa in so_am:
+    if int(sa) > int(max_am):
+        max_am = sa
+for sd in so_duong:
+    if int(sd) < int(min_duong):
+        min_duong = sd
+trungbinhcong = tong / len(number_list)
+print('Chuỗi số:', number_list)
+print('Các số âm:', so_am)
+print('Các số dương:', so_duong)
+print(f'+ Tổng các số trong chuỗi là: {tong}')
+print(f'+ Số lượng các số trong chuỗi là: {len(number_list)}')
+print(f'+ Trung bình cộng các số trong chuỗi là: {trungbinhcong}')
+print(f'+ Số âm lớn nhất là: {max_am}')
+print(f'+ Số dương nhỏ nhất là: {min_duong}')
